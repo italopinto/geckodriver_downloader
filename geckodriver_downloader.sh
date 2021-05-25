@@ -10,7 +10,9 @@ main()
 {
     echo "Set the version of geckodriver, you want to download (X.Y.Z):"
     read version
+    # change the variable commented below if you want to avoid the question above
     #version="0.29.1"
+    # if your OS is 32-bit change the link below to x86
     driver_url="https://github.com/mozilla/geckodriver/releases/download/v${version}/geckodriver-v${version}-linux64.tar.gz"
     driver="geckodriver-v${version}-linux64.tar.gz"
 
@@ -19,7 +21,7 @@ main()
         echo "Driver already installed ..."
         echo "Want to override[y/n]?"
         read user_choice
-        # to refer to a variable use '$'
+        # to refer to a variable already declared use '$'
         if [ $user_choice == "y" ]; then
             delete_gecko
             # to send arguments to a function, in this case variables
@@ -37,11 +39,11 @@ geckodriver_download()
 {
     echo "Downloading the driver ..."
 
-    wget -c --show-progress $1
+    wget -c --show-progress $1 #first argument passed in the function call
 
     echo "Extracting the driver ..."
 
-    tar -xzf $2
+    tar -xzf $2 #first argument passed in the function call
 
     echo "Deleting the tarball ..."
 
